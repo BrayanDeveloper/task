@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title%}Tarea{% endblock title %}
+{% block seccion1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table width="100%">
+                <tr>
+                    <th>Tarea</th>
+                    <th>Categoria</th>
+                    <th>inicio</th>
+                    <th>Fin</th>
+                    <th>Estado</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% if statement %}
+                {% for state in statement %}
+                <tr>
+                    <td>{{ state.task }}</td>
+                    <td>{{ state.category }}</td>
+                    <td>{{ state.date_init }}</td>
+                    <td>{{ state.date_finish }}</td>
+                    <td>{{ state.state }}</td>
+                    <td><a href="/edit_task?id={{ state.id }}">Editar</a></td>
+                    <td><a href="/delete_task?id={{ state.id }}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h4>no tienes tareas</h4>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock seccion1 %}
+
+{% block seccion2 %}
+{% endblock %}
+{% block seccion3 %}
+{% endblock %}
+{% block seccion4 %}
+{% endblock %}
+{% block seccion5 %}
+{% endblock %}
