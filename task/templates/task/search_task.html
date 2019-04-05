@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title%}Tarea{% endblock title %}
+{% block title%}Busqueda Tarea{% endblock title %}
 {% block seccion1 %}
 <div class="container">
     <div class="row">
@@ -14,8 +14,8 @@
                     <th></th>
                     <th></th>
                 </tr>
-                {% if statement %}
-                {% for state in statement %}
+                {% if filter %}
+                {% for state in filter %}
                 <tr>
                     <td>{{ state.task }}</td>
                     <td>{{ state.category }}</td>
@@ -24,15 +24,12 @@
                     <td>{{ state.state }}</td>
                     <td><a href="/edit_task?id={{ state.id }}" class="btn btn-info">Editar</a></td>
                     <td><a href="/delete_task?id={{ state.id }}" class="btn btn-danger">Eliminar</a></td>
-                    <td>{% if state.state == 'ejecucion' %}<a href="/state_task?id={{ state.id }}&state=terminacion" class="btn btn-success">Terminar</a>{% elif state.state == 'terminacion' %}<a href="/state_task?id={{ state.id }}&state=ejecucion" class="btn btn-warning">seguir trabajando</a>{% endif %}</td>
-
                 </tr>
                 {% endfor %}
                 {% else %}
                 <h4>no tienes tareas</h4>
                 {% endif %}
             </table>
-            <h3><a href="/task_all" class="btn btn-warning">ver todas las tareas</a></h3>
         </div>
     </div>
 </div>

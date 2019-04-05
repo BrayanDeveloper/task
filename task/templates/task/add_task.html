@@ -1,34 +1,27 @@
 {% extends 'base.html' %}
-{% block title%}Tarea{% endblock title %}
+{% block title%}agregar Tarea{% endblock title %}
 {% block seccion1 %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            {% if statement %}
-                {% for state in statement %}
+
             <table width="100%">
-                <form action="{% url 'editTaskFull' %}" method="post">
+                <form action="{% url 'addTask' %}" method="post">
                     {% csrf_token %}
                 <tr>
-                    <input type="hidden" name="id" value="{{ state.id }}" class="form-control">
-                    <th>Tarea: <input type="text" name="task" value="{{ state.task }}" class="form-control"></th>
+
+                    <th>Tarea: <input type="text" name="task" value="" class="form-control"></th>
 
                     <th>Categoria:
                         <select name="category" id="" class="form-control">
-                            <option value="{{ state.category }}">{{ state.category }}</option>
                             <option value="desarrollo">Desarrollo</option>
                             <option value="comunidad">Comunidad</option>
                         </select>
                     </th>
                 </tr>
                 <tr>
-                    <th>inicio: {{ state.date_init }} <input type="date" name="date_init" value="{{ state.date_init }}" required class="form-control"></th>
-                    <th>Fin: {{ state.date_finish }} <input type="date" name="date_finish" value="{{ state.date_finish }}" required class="form-control"></th>
-                </tr>
-
-                    <th>Estado</th>
-                    <th></th>
-                    <th></th>
+                    <th>inicio: <input type="date" name="date_init" value="" required class="form-control"></th>
+                    <th>Fin: <input type="date" name="date_finish" value="" required class="form-control"></th>
                 </tr>
 
                 <tr>
@@ -36,7 +29,6 @@
 
                     <th>Estado:
                         <select name="state" id="" class="form-control">
-                            <option value="{{ state.state }}">{{ state.state }}</option>
                             <option value="ejecucion">Ejecucion</option>
                             <option value="terminacion">Terminacion</option>
                         </select>
@@ -45,10 +37,6 @@
                 </tr>
                 </form>
             </table>
-            {% endfor %}
-                {% else %}
-                <h4>no tienes tareas</h4>
-                {% endif %}
         </div>
     </div>
 </div>

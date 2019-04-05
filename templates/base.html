@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>{% block title %}Base{% endblock %}</title>
+  <title>{% block title %}Base{% endblock title %}</title>
   <!-- Font Awesome -->
   {% block css %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -67,37 +67,7 @@ position:absolute;
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="/actividades" target="">actividades
-                </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="/quejas"
-                target="_blank">Quejas
-                </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect" href="/solicitudes" target="">Solicitudes
-                </a>
-            </li>
-          </ul>
 
-          <!-- Right -->
-          <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-              <a href="https://www.facebook.com/bastensoft" class="nav-link waves-effect" target="">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-
-            </li>
-            <li class="nav-item">
-              <a href="/salir" class="nav-link border border-light rounded waves-effect"
-                target="">
-                <i class="fa fa-check mr-2"></i>salir
-              </a>
-            </li>
           </ul>
 
         </div>
@@ -142,14 +112,16 @@ position:absolute;
         <div class="card-body d-sm-flex justify-content-between">
 
           <h4 class="mb-2 mb-sm-0 pt-1">
-            <a href="/" target=""></a>
+            <a href="/add_task/" target="" class="btn btn-success">agregar tarea</a>
+
             <span></span>
             <span></span>
           </h4>
 
-          <form class="d-flex justify-content-center">
+          <form action="{% url 'searchTask' %}" method="post" class="d-flex justify-content-center">
             <!-- Default input -->
-            <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
+            {% csrf_token %}
+            <input type="search" placeholder="Buscar" name="task" aria-label="Search" class="form-control">
             <button class="btn btn-primary btn-sm my-0 p" type="submit">
               <i class="fas fa-search"></i>
             </button>
