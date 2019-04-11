@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body style="border-radius: 10%; color: black; font-family: courier new; background-color: azure; background-image:url('https://www.brandcrowd.com/gallery/brands/pictures/picture14731388075730.png'); background-repeat:no-repeat;">
+    <h3>
+    <div>
+        {{ context.subject }}
+        </h3>
+
+        <p  style="text-aling: center;">{{ context.message }}</p>
+        <i style="text-aling: center;"><strong style="color:dodgerblue;"><p>{{ context.body }}</p></strong></i>
+        <p style="text-aling: center;">Tu usuario es: <strong>{{ context.user }}</strong></p>
+        <p style="text-aling: center;">Tu clave es: <strong>{{ context.password}}</strong></p>
+
+        <p style="text-aling: center;"><strong>Gracias...</strong></p>
+    </div>
+</body>
+</html>

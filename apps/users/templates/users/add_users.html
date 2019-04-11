@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}agregar usuario{% endblock title %}
+{% block seccion1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <legend>{{ sta }}</legend>
+            <form action="{% url 'addUsers' %}" method="post">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="email" class="form-control">
+                <input type="text" name="user" placeholder="user" class="form-control">
+                <input type="password" name="password" placeholder="password" class="form-control">
+                <input type="submit" value="Guardar" class="btn-info">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock seccion1 %}
+
+{% block seccion2 %}
+{% endblock %}
+{% block seccion3 %}
+{% endblock %}
+{% block seccion4 %}
+{% endblock %}
+{% block seccion5 %}
+{% endblock %}

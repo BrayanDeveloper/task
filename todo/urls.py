@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task.views import home, task, editTask, editTaskFull, addTask, deleteTask, searchTask, taskAll, stateTask
+from apps.users.views import addUsers, users, editUser, deleteUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,8 @@ urlpatterns = [
     path('delete_task/', deleteTask, name="deleteTask"),
     path('search_task/', searchTask, name="searchTask"),
     path('state_task/', stateTask, name="stateTask"),
+    path('add_users/', addUsers, name="addUsers"),
+    path('users/', users, name="users"),
+    path('edit/', editUser, name="edit_user"),
+    path('delete_user/', deleteUser, name="delete_user"),
 ]

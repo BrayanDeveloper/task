@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task'
+    'task',
+    'apps.users',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,15 @@ TEMPLATES = [
         },
     },
 ]
+
+DEFAULT_FROM_EMAIL = 'brayan.bautista@megaterios.co'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.megaterios.co'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'brayan.bautista@megaterios.co'
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = 'Bautista1998'
+
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
@@ -98,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-],
+]
 DATE_INPUT_FORMATS = ['%Y-%m-%d']
 
 
@@ -108,7 +118,7 @@ DATE_INPUT_FORMATS = ['%Y-%m-%d']
 
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-us'
 
 TIME_ZONE = 'UTC'
 

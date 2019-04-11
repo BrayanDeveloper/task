@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}agregar usuario{% endblock title %}
+{% block seccion1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+        {% if update %}
+            <legend class="btn btn-success">{{ update }}</legend>
+        {% endif %}
+            {% if users %}
+
+            {% for usered in users %}
+            <table width="100%">
+                <form action="{% url 'edit_user' %}" method="post">
+                    {% csrf_token %}
+                    <tr>
+                        <input type="hidden" value="{{ usered.id }}" name="id">
+                        <td><input type="text" value="{{ usered.email }}" name="email" class="form-control"></td>
+                        <td><input type="text" value="{{ usered.user }}" name="user" class="form-control"></td>
+                        <td><input type="password" value="{{ usered.password }}" name="password" class="form-control"></td>
+                        <td><input type="submit" value="Editar" class="btn-info"></td>
+                        <td><a href="/delete_user?id={{ usered.id }}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                </form>
+            </table>
+            {% endfor %}
+            {% else %}
+            <h3><a href="/add_users" class="btn btn-info">Agregar usuarios</a> <a href="/users" class="btn btn-warning">Volver a usuarios</a></h3>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock seccion1 %}
+
+{% block seccion2 %}
+{% endblock %}
+{% block seccion3 %}
+{% endblock %}
+{% block seccion4 %}
+{% endblock %}
+{% block seccion5 %}
+{% endblock %}

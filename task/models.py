@@ -1,4 +1,5 @@
 from django.db import models
+from apps.users.models import User
 
 
 # Create your models here.
@@ -10,4 +11,5 @@ class Task(models.Model):
     date_init = models.DateField()
     date_finish = models.DateField()
     state = models.CharField(choices=stat, max_length=30)
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
