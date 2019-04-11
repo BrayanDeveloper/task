@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from task.views import home, task, editTask, editTaskFull, addTask, deleteTask, searchTask, taskAll, stateTask
+from task.views import home, task, editTask, editTaskFull, addTask, deleteTask, searchTask, taskAll, stateTask, asingTask, asingTaskUser, asingTaskUserAsing
 from apps.users.views import addUsers, users, editUser, deleteUser
 
 urlpatterns = [
@@ -33,4 +33,7 @@ urlpatterns = [
     path('users/', users, name="users"),
     path('edit/', editUser, name="edit_user"),
     path('delete_user/', deleteUser, name="delete_user"),
+    path('asing_task/', asingTask, name="asing_task"),
+    path('asing_task_user/', asingTaskUser, name="asing_task_user"),
+    path('asing_task_user_asing/', asingTaskUserAsing, name="asing_task_user_asing"),
 ]

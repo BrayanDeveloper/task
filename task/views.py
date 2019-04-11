@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from task.models import Task
+from task.models import Task, Task_user
 # Create your views here.
 
 
@@ -51,3 +51,32 @@ def stateTask(request):
     if request.method == "GET":
         Task.objects.filter(id=request.GET.get('id')).update(state=request.GET.get('state'))
         return redirect('/task')
+
+def asingTask(request):
+    if request.method == "GET":
+        statement = Task.objects.filter(id_user=request.GET.get('id')).order_by('-id')
+        context = {'statement': statement, 'id':request.GET.get('id')}
+        return render(request, 'task/asing_task.html', context)
+
+    statement = Task.objects.filter(id_user=request.GET.get('id')).order_by('-id')
+    context = {'statement': statement, 'id': request.GET.get('id')}
+    return render(request, 'task/asing_task.html', context)
+
+def asingTaskUser(request):
+    if request.method == "GET":
+        statement = Task.objects.all().order_by('-id')
+        context = {'statement': statement, 'id':request.GET.get('id')}
+        return render(request, 'task/asing_task_user.html', context)
+
+    statement = Task.objects.all().order_by('-id')
+    context = {'statement': statement, 'id': request.GET.get('id')}
+    return render(request, 'task/asing_task_user.html', context)
+
+def asingTaskUserAsing(request):
+    if request.method == "POST":
+        statement = Task_user(id_user_id=request.POST.get('id_user'), id_task_id=request.POST.get('id_task'))
+        statement.save()
+        #context = {'statement': statement, 'id':request.POST.get('id')}
+        return redirect('/users')
+
+

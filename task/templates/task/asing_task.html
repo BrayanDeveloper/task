@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title%}asignar tareas{% endblock title %}
+{% block seccion1 %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/asing_task_user?id={{ id }}" class="btn btn-success">Asignar Tareas</a>
+            <legend>Tareas de este usuario</legend>
+            <table width="100%">
+                <tr>
+                    <th>Tarea</th>
+                    <th>Categoria</th>
+                    <th>inicio</th>
+                    <th>Fin</th>
+                    <th>Estado</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% if statement %}
+                {% for state in statement %}
+                <tr>
+                    <td>{{ state.task }}</td>
+                    <td>{{ state.category }}</td>
+                    <td>{{ state.date_init }}</td>
+                    <td>{{ state.date_finish }}</td>
+                    <td>{{ state.state }}</td>
+                    <td><a href="/edit_task?id={{ state.id }}" class="btn btn-info">Editar</a></td>
+                    <td><a href="#" class="btn btn-danger" id="{{ state.id }} " data-toggle="modal" data-target="#confirmacion{{ state.id }}">Eliminar</a></td>
+                        <!-- Modal -->
+                            <div class="modal fade" id="confirmacion{{ state.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                              aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Estas seguro?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
+                                      <script>
+                                          function eliminar(){ location.href = '/delete_task?id={{ state.id }}'; }
+                                      </script>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                    <script>
+                        var id = document.getElementById({{ state.id }});
+                        id.addEventListener('click', function(){ confirmacion = confirm('Estas seguro de eliminar: {{ state.task }}, ahora mismo?'); if(confirmacion){ location.href = ('/delete_task?id={{ state.id }}'); } else{  } })
+                    </script>
+                    <td>{% if state.state == 'ejecucion' %}<a href="/state_task?id={{ state.id }}&state=terminacion" class="btn btn-success">Terminar</a>{% elif state.state == 'terminacion' %}<a href="/state_task?id={{ state.id }}&state=ejecucion" class="btn btn-warning">seguir trabajando</a>{% endif %}</td>
+
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h4>no tienes tareas</h4>
+                {% endif %}
+            </table>
+            <h3><a href="/task_all" class="btn btn-warning">ver todas las tareas</a></h3>
+        </div>
+    </div>
+</div>
+{% endblock seccion1 %}
+
+{% block seccion2 %}
+{% endblock %}
+{% block seccion3 %}
+{% endblock %}
+{% block seccion4 %}
+{% endblock %}
+{% block seccion5 %}
+{% endblock %}
